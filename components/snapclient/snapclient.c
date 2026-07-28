@@ -56,7 +56,7 @@ TaskHandle_t t_http_get_task = NULL;
 
 /* snapast parameters; configurable in menuconfig */
 #define SNAPCAST_USE_SOFT_VOL CONFIG_SNAPCLIENT_USE_SOFT_VOL
-#define SNAPCAST_SOFT_VOL_MULTIPLIER CONFIG_SNAPCAST_SOFT_VOL_MULTIPLIER
+#define SNAPCAST_SOFT_VOL_MULTIPLIER CONFIG_SNAPCLIENT_SOFT_VOL_MULTIPLIER
 
 /* Logging tag */
 static const char* TAG = "SC";
