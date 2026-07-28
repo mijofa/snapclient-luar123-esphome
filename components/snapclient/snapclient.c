@@ -465,6 +465,7 @@ void server_settings_msg_received(
   ESP_LOGI(TAG, "Latency:        %ld", server_settings_message->latency);
   ESP_LOGI(TAG, "Mute:           %d", server_settings_message->muted);
   ESP_LOGI(TAG, "Setting volume: %ld", server_settings_message->volume);
+  ESP_LOGW(TAG, "Wtf?!?");
 
   // Volume setting using ADF HAL
   // abstraction
@@ -473,7 +474,7 @@ void server_settings_msg_received(
     if (server_settings_message->muted) {
       dsp_processor_set_volome(0.0);
     } else {
-      dsp_processor_set_volome(((double)server_settings_message->volume / 100) * 7);
+      dsp_processor_set_volome((double)server_settings_message->volume / 100);
     }
 #endif
     set_mute_cb(server_settings_message->muted);
@@ -482,7 +483,7 @@ void server_settings_msg_received(
   if (volume != server_settings_message->volume) {
 #if SNAPCAST_USE_SOFT_VOL
     if (!server_settings_message->muted) {
-      dsp_processor_set_volome(((double)server_settings_message->volume / 100) * 7);
+      dsp_processor_set_volome((double)server_settings_message->volume / 100);
     }
 #else
     set_volume_cb(server_settings_message->volume);
@@ -491,6 +492,7 @@ void server_settings_msg_received(
 
   scSet->muted = server_settings_message->muted;
   volume = server_settings_message->volume;
+  ESP_LOGW(TAG, "mijofa volume: %ld", volume);
 
   if (scSet->cDacLat_ms != server_settings_message->latency ||
       scSet->buf_ms != server_settings_message->buffer_ms) {
