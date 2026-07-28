@@ -47,7 +47,7 @@ static dsp_all_params_t all_params;
 
 static ptype_t *filter = NULL;
 
-static double dynamic_vol = 0.1;
+static double dynamic_vol = 1.0;
 
 static bool init = false;
 
@@ -790,7 +790,7 @@ void dsp_processor_set_volome(double volume) {
   ESP_LOGD(TAG, "%s: volume=%f", __func__, volume);
   if (volume >= 0 && volume <= 1.0) {
     ESP_LOGI(TAG, "Set volume to %f", volume);
-    dynamic_vol = 0.1;
+    dynamic_vol = volume * 0.1;
   }
 }
 /**
