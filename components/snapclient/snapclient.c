@@ -474,7 +474,7 @@ void server_settings_msg_received(
       dsp_processor_set_volome(0.0);
     } else {
       #ifdef SNAPCAST_SOFT_VOL_MULTIPLIER
-        dsp_processor_set_volome((double)(server_settings_message->volume * SNAPCAST_SOFT_VOL_MULTIPLIER) / 100);
+        dsp_processor_set_volome((double)(server_settings_message->volume * (SNAPCAST_SOFT_VOL_MULTIPLIER/100)) / 100);
       #else
         dsp_processor_set_volome((double)server_settings_message->volume / 100);
       #endif
@@ -487,7 +487,7 @@ void server_settings_msg_received(
 #if SNAPCAST_USE_SOFT_VOL
     if (!server_settings_message->muted) {
       #ifdef SNAPCAST_SOFT_VOL_MULTIPLIER
-        dsp_processor_set_volome((double)(server_settings_message->volume * SNAPCAST_SOFT_VOL_MULTIPLIER) / 100);
+        dsp_processor_set_volome((double)(server_settings_message->volume * (SNAPCAST_SOFT_VOL_MULTIPLIER/100)) / 100);
       #else
         dsp_processor_set_volome((double)server_settings_message->volume / 100);
       #endif
