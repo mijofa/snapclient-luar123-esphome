@@ -47,7 +47,7 @@ static dsp_all_params_t all_params;
 
 static ptype_t *filter = NULL;
 
-static double dynamic_vol = 1.0;
+static double dynamic_vol = 0.1;
 
 static bool init = false;
 
