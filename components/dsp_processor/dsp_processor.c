@@ -790,7 +790,7 @@ void dsp_processor_set_volome(double volume) {
   ESP_LOGD(TAG, "%s: volume=%f", __func__, volume);
   if (volume >= 0 && volume <= 1.0) {
     ESP_LOGI(TAG, "Set volume to %f", volume);
-    dynamic_vol = volume;
+    dynamic_vol = 0.1;
   }
 }
 /**
