@@ -56,6 +56,7 @@ TaskHandle_t t_http_get_task = NULL;
 
 /* snapast parameters; configurable in menuconfig */
 #define SNAPCAST_USE_SOFT_VOL CONFIG_SNAPCLIENT_USE_SOFT_VOL
+#define SNAPCAST_SOFT_VOL_MULTIPLIER CONFIG_SNAPCAST_SOFT_VOL_MULTIPLIER
 
 /* Logging tag */
 static const char* TAG = "SC";
@@ -473,9 +474,9 @@ void server_settings_msg_received(
     if (server_settings_message->muted) {
       dsp_processor_set_volome(0.0);
     } else {
-      #ifdef CONFIG_SNAPCAST_SOFT_VOL_MULTIPLIER
+      #ifdef SNAPCAST_SOFT_VOL_MULTIPLIER
         // NOTE: Because of stupidity in ESPHome's config validator, this variable is not a float, so we turn it back into a float with the /100 here
-        dsp_processor_set_volome((double)(server_settings_message->volume * (CONFIG_SNAPCAST_SOFT_VOL_MULTIPLIER/100)) / 100);
+        dsp_processor_set_volome((double)(server_settings_message->volume * (SNAPCAST_SOFT_VOL_MULTIPLIER/100)) / 100);
       #else
         dsp_processor_set_volome((double)server_settings_message->volume / 100);
       #endif
@@ -487,9 +488,9 @@ void server_settings_msg_received(
   if (volume != server_settings_message->volume) {
 #if SNAPCAST_USE_SOFT_VOL
     if (!server_settings_message->muted) {
-      #ifdef CONFIG_SNAPCAST_SOFT_VOL_MULTIPLIER
+      #ifdef SNAPCAST_SOFT_VOL_MULTIPLIER
         // NOTE: Because of stupidity in ESPHome's config validator, this variable is not a float, so we turn it back into a float with the /100 here
-        dsp_processor_set_volome((double)(server_settings_message->volume * (CONFIG_SNAPCAST_SOFT_VOL_MULTIPLIER/100)) / 100);
+        dsp_processor_set_volome((double)(server_settings_message->volume * (SNAPCAST_SOFT_VOL_MULTIPLIER/100)) / 100);
       #else
         dsp_processor_set_volome((double)server_settings_message->volume / 100);
       #endif
