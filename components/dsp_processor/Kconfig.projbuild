@@ -22,8 +22,8 @@ menu "ESP32 DSP processor config"
             Use software volume mixer instead of hardware mixer (when your DAC does not support hardware volume control).
 
     config SNAPCLIENT_SOFT_VOL_MULTIPLIER
-        int "Software volume control multiplier (* 100)"
-        default 100
+        int "Software volume control multiplier"
+        default 1
         depends on SNAPCLIENT_USE_SOFT_VOL
         help
            FIXME: ...
